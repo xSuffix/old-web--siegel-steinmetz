@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "Text with Title",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_page_content_text_with_titles"
+}

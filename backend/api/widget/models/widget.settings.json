@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "widgets",
+  "info": {
+    "name": "Widget"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-content.text-with-title"
+      ]
+    }
+  }
+}

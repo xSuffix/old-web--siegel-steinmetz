@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "pages",
   "info": {
     "name": "Page"
   },
@@ -7,12 +9,25 @@
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "navigation": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "path": {
       "type": "string",
-      "required": true,
       "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "widgets": {
+      "collection": "widget"
     }
-  },
-  "connection": "default",
-  "collectionName": "pages"
+  }
 }
