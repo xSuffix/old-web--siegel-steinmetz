@@ -1,0 +1,50 @@
+{
+  "connection": "default",
+  "collectionName": "components_field_navigations",
+  "info": {
+    "name": "Navigation",
+    "icon": "external-link-alt"
+  },
+  "options": {},
+  "attributes": {
+    "desktop_navigation": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "desktop_navigation_order": {
+      "type": "integer",
+      "min": 0,
+      "default": 0,
+      "required": true
+    },
+    "mobile_navigation": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "mobile_navigation_order": {
+      "type": "integer",
+      "min": 0,
+      "default": 0,
+      "required": true
+    },
+    "mobile_burgermenu": {
+      "type": "boolean",
+      "default": false,
+      "private": false,
+      "required": false
+    },
+    "mobile_burgermenu_order": {
+      "type": "integer",
+      "min": 0,
+      "default": 0,
+      "required": true
+    },
+    "desktop_navigation_button": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

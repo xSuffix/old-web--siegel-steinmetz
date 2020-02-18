@@ -1,8 +1,19 @@
 <template>
   <div>
+    <SiegelHeaderDefault />
     <nuxt />
   </div>
 </template>
+
+<script>
+import SiegelHeaderDefault from "~/components/SiegelHeaderDefault.vue";
+
+export default {
+  components: {
+    SiegelHeaderDefault
+  }
+}
+</script>
 
 <style>
 html {
@@ -15,6 +26,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  
+  --color-primary: #770019;
 }
 
 *,
