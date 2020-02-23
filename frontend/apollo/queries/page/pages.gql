@@ -1,0 +1,23 @@
+query Pages {
+  pages(where: {
+    active: true
+  }) {
+    path
+    name
+    navigation {
+      desktop_navigation
+      desktop_navigation_order
+      desktop_navigation_button
+      mobile_navigation
+      mobile_navigation_order
+      mobile_burgermenu
+      mobile_burgermenu_order
+    }
+    widgets {
+      Name
+      Content {
+        __typename
+      }
+    }
+  }
+}

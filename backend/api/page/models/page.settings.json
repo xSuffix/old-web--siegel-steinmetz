@@ -9,11 +9,6 @@
     "timestamps": true
   },
   "attributes": {
-    "navigation": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "active": {
       "type": "boolean",
       "default": true,
@@ -28,6 +23,12 @@
     },
     "widgets": {
       "collection": "widget"
+    },
+    "navigation": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "field.navigation"
     }
   }
 }

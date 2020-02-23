@@ -1,12 +1,12 @@
 <template>
   <header>
     <nav>
-      <router-link to="/">
+      <nuxt-link to="/">
         <img src="../assets/favicon_padding.svg" height="80%" />
         <LogoClaim />
-      </router-link>
+      </nuxt-link>
       <div>
-        <router-link to="/about">About</router-link>
+        <nuxt-link to="/about">About</nuxt-link>
       </div>
     </nav>
   </header>

@@ -6,11 +6,23 @@
 </template>
 
 <script>
+import pagesQuery from '~/apollo/queries/pages'
 import SiegelHeaderDefault from "~/components/SiegelHeaderDefault.vue";
 
 export default {
+  data() {
+    return {
+      pages: []
+    }
+  }, 
   components: {
     SiegelHeaderDefault
+  },
+  apollo: {
+    pages: {
+      prefetch: true,
+      query: pagesQuery
+    }
   }
 }
 </script>

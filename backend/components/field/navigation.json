@@ -15,7 +15,7 @@
     "desktop_navigation_order": {
       "type": "integer",
       "min": 0,
-      "default": 0,
+      "default": 100,
       "required": true
     },
     "mobile_navigation": {
@@ -26,7 +26,7 @@
     "mobile_navigation_order": {
       "type": "integer",
       "min": 0,
-      "default": 0,
+      "default": 100,
       "required": true
     },
     "mobile_burgermenu": {
@@ -38,7 +38,7 @@
     "mobile_burgermenu_order": {
       "type": "integer",
       "min": 0,
-      "default": 0,
+      "default": 100,
       "required": true
     },
     "desktop_navigation_button": {
