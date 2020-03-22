@@ -8,10 +8,9 @@
       <NavigationDesktop
         :links="this.desktopLinks"
         id="desktop"
-        ref="desktop"
-        :class="{hidden: this.whiteSpace == '0px'}"
+        :class="{hidden: this.$store.state.mobileNavigation}"
       />
-      <NavigationBurger v-if="this.whiteSpace == '0px'"></NavigationBurger>
+      <NavigationBurger v-if="this.$store.state.mobileNavigation"></NavigationBurger>
     </nav>
   </header>
 </template>
@@ -56,8 +55,7 @@ export default {
   },
   data() {
     return {
-      routes: [],
-      whiteSpace: "1px"
+      routes: []
     };
   },
   computed: {
@@ -69,6 +67,22 @@ export default {
         });
     }
   },
+  methods: {
+    determineNavigationLayout: function(minWhiteSpace) {
+      try {
+        this.$store.commit(
+          "setMobileNavigation",
+          parseInt(
+            window
+              .getComputedStyle(document.getElementById("desktop"))
+              .marginLeft.split("px")[0]
+          ) <= minWhiteSpace
+        );
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+  },
   apollo: {
     routes: {
       prefetch: true,
@@ -76,19 +90,12 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('load', () => {
-      try {
-        this.whiteSpace = parseInt(window.getComputedStyle(
-          document.getElementById("desktop")
-        ).marginLeft.split("px")[0]) < 610 ? "0px" : "1px";
-      } catch (ex) {}
+    window.addEventListener("load", () => {
+      this.determineNavigationLayout(610);
     });
+
     window.addEventListener("resize", () => {
-      try {
-        this.whiteSpace = window.getComputedStyle(
-          document.getElementById("desktop")
-        ).marginLeft;
-      } catch (ex) {}
+      this.determineNavigationLayout(0);
     });
   }
 };
@@ -131,6 +138,7 @@ nav {
     align-items: center;
     min-width: 1px;
     margin-left: auto;
+    overflow: hidden;
   }
 }
 

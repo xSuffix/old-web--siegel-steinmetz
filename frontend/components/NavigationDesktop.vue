@@ -38,10 +38,4 @@ a {
     font-size: calc(0.8vw + 9px);
   }
 }
-
-@media (max-width: 900px) {
-  div {
-    /* display: none !important; */
-  }
-}
 </style>

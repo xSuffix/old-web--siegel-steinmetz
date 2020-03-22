@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <div v-for="route in this.routes" :key="route.url">{{route}}</div> -->
     <SiegelHeaderDefault />
     <nuxt />
+    <NavigationMobile />
   </div>
 </template>
 
@@ -10,74 +10,80 @@
 import gql from "graphql-tag";
 import pagesQuery from "~/apollo/queries/page/pages";
 import SiegelHeaderDefault from "~/components/SiegelHeaderDefault.vue";
+import NavigationMobile from "@/components/NavigationMobile.vue";
 
-import ApolloClient from "apollo-boost";
-import { InMemoryCache } from "apollo-cache-inmemory";
+// import ApolloClient from "apollo-boost";
+// import { InMemoryCache } from "apollo-cache-inmemory";
 
-const cache = new InMemoryCache();
+// const cache = new InMemoryCache();
 
-// export const pages = gql`
-//   type Page {
-//     id: ID!
-//     name: String
-//   }
-// `;
+// const apolloClient = new ApolloClient({
+//   cache,
+//   resolvers: {}
+// });
 
-// export const routes = gql`
-//   type Route {
-//     url: String!
-//     page: Page(name: String)
-//   }
-// `;
-
-const apolloClient = new ApolloClient({
-  cache,
-  // pages,
-  // routes,
-  resolvers: {}
-});
-
-cache.writeData({
-  data: {
-    routes: [
-      {
-        url: "blablub",
-        __typename: "Route",
-        page: {
-          name: "testpage",
-          __typename: "Page"
-        }
-      }
-    ]
-  }
-})
-
-// const routesQuery = gql`
-//   {
-//     routes @client {
-//       url
-//       page {
-//         name
+// cache.writeData({
+//   data: {
+//     routes: [
+//       {
+//         url: "blablub",
+//         __typename: "Route",
+//         page: {
+//           name: "testpage",
+//           __typename: "Page"
+//         }
 //       }
-//     }
+//     ]
 //   }
-// `
+// })
+
+const routesQuery = gql`
+  {
+    routes(where: { enabled: true }) {
+      url
+      page {
+        name
+      }
+      DesktopNavigation {
+        enabled
+        order
+        style
+      }
+      MobileNavigation {
+        enabled
+        order
+      }
+      BurgerNavigation {
+        enabled
+        order
+      }
+    }
+  }
+`;
 
 export default {
   data() {
     return {
-      // routes: []
+      routes: []
     };
   },
   components: {
-    SiegelHeaderDefault
+    SiegelHeaderDefault,
+    NavigationMobile
   },
-  // apollo: {
-  //   routes: {
-  //     prefetch: true,
-  //     query: routesQuery
-  //   }
-  // }
+  apollo: {
+    routes: {
+      prefetch: true,
+      query: routesQuery
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getRoutes");
+    // this.$nextTick(() => {
+    //   console.log(this.routes);
+    //   this.$store.commit("setRoutes", this.routes);
+    // });
+  }
 };
 </script>
 

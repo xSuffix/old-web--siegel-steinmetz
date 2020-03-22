@@ -1,66 +1,52 @@
-// import gql from 'graphql-tag'
-// // import apollo from './apolloClient'
+import gql from 'graphql-tag'
 
-// export const state = () => ({
-//   pages: [{
-//       name: "Home",
-//       route: "/test"
-//     },
-//     {
-//       name: "505",
-//       route: "/404"
-//     }
-//   ]
-// })
+export const state = () => ({
+  mobileNavigation: false,
+  routes: []
+})
 
-// export const mutations = {
-//   setPages(state, pages) {
-//     state.pages = pages;
-//   },
-//   addPage(state, page) {
-//     state.pages.push(page);
-//   }
-// }
+export const mutations = {
+  setMobileNavigation(state, bool) {
+    state.mobileNavigation = bool;
+  },
+  setRoutes(state, routes) {
+    state.routes = routes
+  }
+}
 
-// export const actions = {
-//   async getPages({
-//     commit
-//   }) {
-//     console.time('getPages')
+export const actions = {
+  async getRoutes({
+    commit
+  }) {
+    const response = await this.$apollo.query({
+      query: gql `
+      query Pages {
+        routes(where: { enabled: true }) {
+          url
+          page {
+            name
+          }
+          DesktopNavigation {
+            enabled
+            order
+            style
+          }
+          MobileNavigation {
+            enabled
+            order
+          }
+          BurgerNavigation {
+            enabled
+            order
+          }
+        }
+      }
+      `
+    })
 
-//     const response = await this.$apollo.query({
-//       query: gql `
-//       query Pages {
-//         pages(where: {
-//           active: true
-//         }) {
-//           path
-//           name
-//           navigation {
-//             desktop_navigation
-//             desktop_navigation_order
-//             desktop_navigation_button
-//             mobile_navigation
-//             mobile_navigation_order
-//             mobile_burgermenu
-//             mobile_burgermenu_order
-//           }
-//           widgets {
-//             Name
-//             Content {
-//               __typename
-//             }
-//           }
-//         }
-//       }
-//       `
-//     })
-
-//     const {
-//       pages
-//     } = response.data
-//     commit('setPages', pages)
-
-//     console.timeEnd('getPages')
-//   }
-// }
+    const {
+      pages
+    } = response.data
+    commit('setRoutes', pages)
+  }
+}
