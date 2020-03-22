@@ -1,0 +1,42 @@
+{
+  "connection": "default",
+  "collectionName": "routes",
+  "info": {
+    "name": "Route"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "page": {
+      "model": "page",
+      "via": "routes"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "DesktopNavigation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "field.desktop-navigation",
+      "required": true
+    },
+    "MobileNavigation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "field.mobile-navigation",
+      "required": true
+    },
+    "BurgerNavigation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "field.burger-navigation",
+      "required": true
+    }
+  }
+}

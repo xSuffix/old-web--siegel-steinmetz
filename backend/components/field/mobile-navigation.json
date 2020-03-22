@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "components_field_mobile_navigations",
+  "info": {
+    "name": "mobile-navigation",
+    "icon": "mobile-alt"
+  },
+  "options": {},
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 100,
+      "required": true,
+      "min": 0
+    }
+  }
+}

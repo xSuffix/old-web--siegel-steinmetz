@@ -2,7 +2,7 @@ query Pages {
   pages(where: {
     active: true
   }) {
-    path
+    route
     name
     navigation {
       desktop_navigation

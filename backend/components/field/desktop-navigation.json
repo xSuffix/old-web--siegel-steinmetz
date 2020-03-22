@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "components_field_desktop_navigations",
+  "info": {
+    "name": "desktop-navigation",
+    "icon": "desktop"
+  },
+  "options": {},
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 100,
+      "required": true,
+      "min": 0
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "button"
+      ]
+    }
+  }
+}

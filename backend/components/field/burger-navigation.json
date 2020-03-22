@@ -1,0 +1,22 @@
+{
+  "info": {
+    "name": "burger-navigation",
+    "icon": "hamburger"
+  },
+  "options": {},
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "type": "integer",
+      "private": false,
+      "default": 100,
+      "unique": false,
+      "min": 0
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_field_burger_navigations"
+}

@@ -3,10 +3,26 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
+  data() {
+    return {
+      route: `/${this.$route.params.name}`
+    }
+  },
+  computed: {
+    ...mapState(["pages"]),
+    page() {
+      return this.pages.find(el => el.route === this.route) || this.pages.find(el => el.route === "/404") || { name: "404" }
+    }
+  },
+  mounted() {
+    console.log(this.page);
+  },
   head() {
     return {
-      title: `${this.$route.params.name} - Siegel Steinmetz`,
+      title: `${this.page.name} - Siegel Steinmetz`,
     };
   }
 };

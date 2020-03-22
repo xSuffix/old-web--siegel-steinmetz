@@ -9,14 +9,10 @@
     "timestamps": true
   },
   "attributes": {
-    "active": {
+    "enabled": {
       "type": "boolean",
       "default": true,
       "required": true
-    },
-    "path": {
-      "type": "string",
-      "unique": true
     },
     "name": {
       "type": "string"
@@ -24,11 +20,9 @@
     "widgets": {
       "collection": "widget"
     },
-    "navigation": {
-      "type": "component",
-      "repeatable": false,
-      "required": true,
-      "component": "field.navigation"
+    "routes": {
+      "via": "page",
+      "collection": "route"
     }
   }
 }
