@@ -2,62 +2,24 @@
   <div>
     <SiegelHeaderDefault />
     <nuxt />
+    <NavigationBurger />
     <NavigationMobile />
   </div>
 </template>
 
 <script>
-import gql from "graphql-tag";
-import pagesQuery from "~/apollo/queries/page/pages";
-import SiegelHeaderDefault from "~/components/SiegelHeaderDefault.vue";
+import SiegelHeaderDefault from "@/components/SiegelHeaderDefault.vue";
+import NavigationBurger from "@/components/NavigationBurger.vue";
 import NavigationMobile from "@/components/NavigationMobile.vue";
 
-const routesQuery = gql`
-  {
-    routes(where: { enabled: true }) {
-      url
-      page {
-        name
-      }
-      desktopNavigation {
-        enabled
-        order
-        style
-      }
-      mobileNavigation {
-        enabled
-        order
-      }
-      burgerNavigation {
-        enabled
-        order
-      }
-    }
-  }
-`;
-
 export default {
-  data() {
-    return {
-      routes: []
-    };
-  },
   components: {
     SiegelHeaderDefault,
+    NavigationBurger,
     NavigationMobile
-  },
-  apollo: {
-    routes: {
-      prefetch: true,
-      query: routesQuery
-    }
   },
   mounted() {
     this.$store.dispatch("getRoutes");
-    // this.$nextTick(() => {
-    //   console.log(this.routes);
-    //   this.$store.commit("setRoutes", this.routes);
-    // });
   }
 };
 </script>

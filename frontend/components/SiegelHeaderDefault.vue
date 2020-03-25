@@ -6,7 +6,7 @@
         <LogoClaim />
       </nuxt-link>
       <NavigationDesktop />
-      <NavigationBurger />
+      <BurgerMenu />
     </nav>
   </header>
 </template>
@@ -14,14 +14,14 @@
 <script>
 import LogoClaim from "@/components/LogoClaim.vue";
 import NavigationDesktop from "@/components/NavigationDesktop.vue";
-import NavigationBurger from "@/components/NavigationBurger.vue";
+import BurgerMenu from "@/components/BurgerMenu.vue";
 
 export default {
   name: "SiegelHeaderDefault",
   components: {
     LogoClaim,
     NavigationDesktop,
-    NavigationBurger
+    BurgerMenu
   }
 };
 </script>
