@@ -1,7 +1,8 @@
 <template>
   <svg
+    v-if="this.$store.state.mobileNavigation"
     @click="active = !active"
-    :class="{active: this.active}"
+    :class="{ active: this.active }"
     xmlns="http://www.w3.org/2000/svg"
     fill="#3c3c3c"
     viewBox="0 0 48 31"
@@ -40,11 +41,11 @@ svg {
   transform: rotate(30deg);
 
   :nth-child(2) {
-    width: 80%
+    width: 80%;
   }
 
   :nth-child(3) {
-    width: 60%
+    width: 60%;
   }
 }
 </style>

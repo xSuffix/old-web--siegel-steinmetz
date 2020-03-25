@@ -14,7 +14,7 @@ export default {
   computed: {
     ...mapState(["pages"]),
     page() {
-      return this.pages.find(el => el.route === this.route) || this.pages.find(el => el.route === "/404") || { name: "404" }
+      return true//this.pages.find(el => el.route === this.route) || this.pages.find(el => el.route === "/404") || { name: "404" }
     }
   },
   mounted() {

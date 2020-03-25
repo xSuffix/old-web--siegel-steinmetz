@@ -18,24 +18,25 @@ export const actions = {
   async getRoutes({
     commit
   }) {
-    const response = await this.$apollo.query({
+    const response = await this.app.apolloProvider.defaultClient.query({
       query: gql `
       query Pages {
         routes(where: { enabled: true }) {
           url
+          icon
           page {
             name
           }
-          DesktopNavigation {
+          desktopNavigation {
             enabled
             order
             style
           }
-          MobileNavigation {
+          mobileNavigation {
             enabled
             order
           }
-          BurgerNavigation {
+          burgerNavigation {
             enabled
             order
           }
@@ -45,8 +46,8 @@ export const actions = {
     })
 
     const {
-      pages
+      routes
     } = response.data
-    commit('setRoutes', pages)
+    commit('setRoutes', routes)
   }
 }

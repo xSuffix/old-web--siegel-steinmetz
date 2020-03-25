@@ -5,46 +5,16 @@
         <img src="../assets/favicon_padding.svg" height="80%" />
         <LogoClaim />
       </nuxt-link>
-      <NavigationDesktop
-        :links="this.desktopLinks"
-        id="desktop"
-        :class="{hidden: this.$store.state.mobileNavigation}"
-      />
-      <NavigationBurger v-if="this.$store.state.mobileNavigation"></NavigationBurger>
+      <NavigationDesktop />
+      <NavigationBurger />
     </nav>
   </header>
 </template>
 
 <script>
-import gql from "graphql-tag";
-
 import LogoClaim from "@/components/LogoClaim.vue";
 import NavigationDesktop from "@/components/NavigationDesktop.vue";
 import NavigationBurger from "@/components/NavigationBurger.vue";
-
-const routesQuery = gql`
-  {
-    routes(where: { enabled: true }) {
-      url
-      page {
-        name
-      }
-      DesktopNavigation {
-        enabled
-        order
-        style
-      }
-      MobileNavigation {
-        enabled
-        order
-      }
-      BurgerNavigation {
-        enabled
-        order
-      }
-    }
-  }
-`;
 
 export default {
   name: "SiegelHeaderDefault",
@@ -52,51 +22,6 @@ export default {
     LogoClaim,
     NavigationDesktop,
     NavigationBurger
-  },
-  data() {
-    return {
-      routes: []
-    };
-  },
-  computed: {
-    desktopLinks: function() {
-      return this.routes
-        .filter(el => el.DesktopNavigation.enabled)
-        .sort((a, b) => {
-          return a.DesktopNavigation.order - b.DesktopNavigation.order;
-        });
-    }
-  },
-  methods: {
-    determineNavigationLayout: function(minWhiteSpace) {
-      try {
-        this.$store.commit(
-          "setMobileNavigation",
-          parseInt(
-            window
-              .getComputedStyle(document.getElementById("desktop"))
-              .marginLeft.split("px")[0]
-          ) <= minWhiteSpace
-        );
-      } catch (ex) {
-        console.log(ex);
-      }
-    }
-  },
-  apollo: {
-    routes: {
-      prefetch: true,
-      query: routesQuery
-    }
-  },
-  mounted() {
-    window.addEventListener("load", () => {
-      this.determineNavigationLayout(610);
-    });
-
-    window.addEventListener("resize", () => {
-      this.determineNavigationLayout(0);
-    });
   }
 };
 </script>
@@ -110,6 +35,7 @@ header {
   max-width: 1920px;
   position: relative;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 nav {
@@ -138,11 +64,6 @@ nav {
     align-items: center;
     min-width: 1px;
     margin-left: auto;
-    overflow: hidden;
   }
-}
-
-.hidden {
-  visibility: hidden;
 }
 </style>

@@ -20,23 +20,26 @@
       "type": "boolean",
       "default": true
     },
-    "DesktopNavigation": {
+    "desktopNavigation": {
       "type": "component",
       "repeatable": false,
       "component": "field.desktop-navigation",
       "required": true
     },
-    "MobileNavigation": {
+    "mobileNavigation": {
       "type": "component",
       "repeatable": false,
       "component": "field.mobile-navigation",
       "required": true
     },
-    "BurgerNavigation": {
+    "burgerNavigation": {
       "type": "component",
       "repeatable": false,
       "component": "field.burger-navigation",
       "required": true
+    },
+    "icon": {
+      "type": "string"
     }
   }
 }

@@ -28,7 +28,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    "@/plugins/apollo-client"
   ],
   /*
   ** Nuxt.js dev-modules
@@ -40,6 +39,7 @@ export default {
   */
   modules: [
     '@nuxtjs/apollo',
+    'nuxt-material-design-icons'
   ],
   
   apollo: {

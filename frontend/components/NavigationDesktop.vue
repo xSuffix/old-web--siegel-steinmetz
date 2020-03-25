@@ -1,20 +1,59 @@
 <template>
-  <div>
-    <nuxt-link v-for="link in links" :key="link.url" :to="link.url" :class="[link.DesktopNavigation.style]">{{link.page.name}}</nuxt-link>
+  <div :class="{ hidden: this.$store.state.mobileNavigation }">
+    <nuxt-link
+      v-for="link in links"
+      :key="link.url"
+      :to="link.url"
+      :class="[link.desktopNavigation.style]"
+      >{{ link.page.name }}</nuxt-link
+    >
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "NavigationDesktop",
-  props: {
-    links: Array
+  computed: {
+    ...mapState(["routes"]),
+    links() {
+      console.log(this.routes)
+      return this.routes
+        .filter(el => el.desktopNavigation.enabled)
+        .sort((a, b) => {
+          return a.desktopNavigation.order - b.desktopNavigation.order;
+        });
+    }
   },
-}
+  methods: {
+    determineNavigationLayout: function(minWhiteSpace) {
+      try {
+        this.$store.commit(
+          "setMobileNavigation",
+          parseInt(
+            window.getComputedStyle(this.$el).marginLeft.split("px")[0]
+          ) <= minWhiteSpace
+        );
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener("load", () => {
+      this.determineNavigationLayout(610);
+    });
+
+    window.addEventListener("resize", () => {
+      this.determineNavigationLayout(0);
+    });
+  }
+};
 </script>
 
 <style scoped>
-a {  
+a {
   text-decoration: none;
   font-weight: 500;
   font-size: 24px;

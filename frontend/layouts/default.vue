@@ -12,31 +12,6 @@ import pagesQuery from "~/apollo/queries/page/pages";
 import SiegelHeaderDefault from "~/components/SiegelHeaderDefault.vue";
 import NavigationMobile from "@/components/NavigationMobile.vue";
 
-// import ApolloClient from "apollo-boost";
-// import { InMemoryCache } from "apollo-cache-inmemory";
-
-// const cache = new InMemoryCache();
-
-// const apolloClient = new ApolloClient({
-//   cache,
-//   resolvers: {}
-// });
-
-// cache.writeData({
-//   data: {
-//     routes: [
-//       {
-//         url: "blablub",
-//         __typename: "Route",
-//         page: {
-//           name: "testpage",
-//           __typename: "Page"
-//         }
-//       }
-//     ]
-//   }
-// })
-
 const routesQuery = gql`
   {
     routes(where: { enabled: true }) {
@@ -44,16 +19,16 @@ const routesQuery = gql`
       page {
         name
       }
-      DesktopNavigation {
+      desktopNavigation {
         enabled
         order
         style
       }
-      MobileNavigation {
+      mobileNavigation {
         enabled
         order
       }
-      BurgerNavigation {
+      burgerNavigation {
         enabled
         order
       }
@@ -136,5 +111,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.hidden {
+  visibility: hidden;
 }
 </style>
