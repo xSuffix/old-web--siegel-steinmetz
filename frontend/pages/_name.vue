@@ -1,29 +1,40 @@
 <template>
-  <div>{{this.$route.params.name}}</div>
+  <div>{{this.page}}</div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import pageByRouteQuery from "@/apollo/queries/page/pageByRoute.gql"
 
 export default {
   data() {
     return {
-      route: `/${this.$route.params.name}`
+      route: `/${this.$route.params.name || ""}`,
+      pages: ["test"]
     }
   },
   computed: {
-    ...mapState(["pages"]),
     page() {
-      return true//this.pages.find(el => el.route === this.route) || this.pages.find(el => el.route === "/404") || { name: "404" }
+      return this.pages[0]
     }
   },
   mounted() {
-    console.log(this.page);
+    console.log(this.route);
   },
   head() {
     return {
-      title: `${this.page.name} - Siegel Steinmetz`,
+      title: `${this.page} - Siegel Steinmetz`,
     };
+  },
+  apollo: {
+    pages: {
+      query: pageByRouteQuery,
+      variables() {
+        return {
+          URL: this.route
+        }
+      }
+    }
   }
 };
 </script>
