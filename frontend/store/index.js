@@ -2,6 +2,7 @@ import gql from 'graphql-tag'
 
 export const state = () => ({
   mobileNavigation: false,
+  openBurgerMenu: false,
   routes: []
 })
 
@@ -11,6 +12,9 @@ export const mutations = {
   },
   setRoutes(state, routes) {
     state.routes = routes
+  },
+  invertBurgerMenu(state) {
+    state.openBurgerMenu = !state.openBurgerMenu;
   }
 }
 

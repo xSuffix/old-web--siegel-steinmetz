@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ hidden: this.$store.state.mobileNavigation }">
+  <div :class="{ hidden: $store.state.mobileNavigation }">
     <nuxt-link
       v-for="link in links"
       :key="link.url"
